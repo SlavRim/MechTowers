@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+	<MechBuildingCategory.label>Устройство контроля меха</MechBuildingCategory.label>
+	
+	<MechBuildingRadius.label>радиус сигнала</MechBuildingRadius.label>
+	<MechBuildingRadius.description>Максимальное расстояние это устройство может передавать приказы Механойдам.</MechBuildingRadius.description>
+	
+	<MechBuildingMaxLinks.label>максимум подключённых мехов</MechBuildingMaxLinks.label>
+	<MechBuildingMaxLinks.description>Лимит количетсва подключённых мехов.</MechBuildingMaxLinks.description>
+	
+	<MechBuildingBandwidth.label>пропускная способность</MechBuildingBandwidth.label>
+	<MechBuildingBandwidth.description>Количество получаемой пропускной способности мех-линка владельца-механитора.</MechBuildingBandwidth.description>
+</LanguageData>

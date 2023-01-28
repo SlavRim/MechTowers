@@ -1,0 +1,42 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<Configurations>1.4;1.4_DEBUG</Configurations>
+		<ModSharedProps>$(ProjectDir)Shared.mod.props.csproj</ModSharedProps>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <Publicize Include="mscorlib" />
+	</ItemGroup>
+	
+	<Import Project="$(ModSharedProps)" />
+
+	<ItemGroup>
+	  <Compile Remove="RimTerritory\**" />
+	  <EmbeddedResource Remove="RimTerritory\**" />
+	  <None Remove="RimTerritory\**" />
+	</ItemGroup>
+
+	<Choose>
+		<When Condition="'$(Debug)' == 'true'">
+			<ItemGroup>
+				<ProjectReference Include="$(ProjectDir)RimTerritory\RimTerritory.csproj" />
+			</ItemGroup>
+		</When>
+		<Otherwise>
+			<ItemGroup>
+				<ProjectReference Include="$(ProjectDir)RimTerritory\RimTerritory.csproj" Private="false" />
+			</ItemGroup>
+		</Otherwise>
+	</Choose>
+	
+	<ItemGroup>
+		<PackageReference Include="Lib.Harmony" Version="2.2.2" ExcludeAssets="runtime" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Using Include="RimTerritory" />
+		<Using Include="HarmonyLib" />
+	</ItemGroup>
+
+</Project>
