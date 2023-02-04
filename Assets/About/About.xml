@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ModMetaData>
-	<name>MechTowers</name>
-	<author>Sl4vP0weR</author>
+	<name>More Mechanitor Towers</name>
+	<authors>
+		<li>Sl4vP0weR</li>
+		<li>Sir Van</li>
+	</authors>
 	<packageId>Sl4vP0weR.MechTowers</packageId>
 	<supportedVersions>
 		<li>1.4</li>
 	</supportedVersions>
-	<description>Build Mechanoid beacons that can replicate the order signals of a mechanitor.</description>
+	<description>Build Mechanitor Towers that can replicate the order signals to mechs.</description>
 	<modDependencies>
 		<li>
 			<packageId>brrainz.harmony</packageId>
