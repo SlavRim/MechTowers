@@ -1,4 +1,4 @@
-﻿using Result = MechTowers.MechCommander.CommandResult;
+﻿using Result = MechTowers.MechOrder.CommandResult;
 
 namespace MechTowers;
 
@@ -13,7 +13,7 @@ public static partial class MechCommander_Extensions
             _ => null
         };
         var success = result.IsSuccess();
-        MechCommander.SendMessage(message, success);
+        MechOrder.SendMessage(message, success);
         return success;
     }
 }

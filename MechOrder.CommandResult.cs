@@ -1,6 +1,6 @@
 ﻿namespace MechTowers;
 
-partial class MechCommander
+partial class MechOrder
 {
     public enum CommandResult
     {

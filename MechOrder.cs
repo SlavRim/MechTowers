@@ -1,12 +1,12 @@
-﻿using Result = MechTowers.MechCommander.CommandResult;
+﻿using Result = MechTowers.MechOrder.CommandResult;
 
 namespace MechTowers;
 
-public partial class MechCommander
+public partial class MechOrder
 {
     public ICollection<Pawn> Mechs { get; }
     public LocalTargetInfo Target { get; }
-    public MechCommander(ICollection<Pawn> mechs, LocalTargetInfo target)
+    public MechOrder(ICollection<Pawn> mechs, LocalTargetInfo target)
     {
         Mechs = mechs;
         Target = target;

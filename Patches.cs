@@ -18,8 +18,9 @@ public static partial class Patches
     {
         var pawn = __instance.Pawn;
         var mechs = GetSelectedDraftedMechs(pawn).ToList();
-        var commander = new MechCommander(mechs, target);
-        if (!__result) __result = commander.AllowedFor(pawn).Handle();
+        MechOrder order = new(mechs, target);
+        if (!__result) 
+            __result = order.AllowedFor(pawn).Handle();
     }
 
     [HarmonyPatch(typeof(Pawn_MechanitorTracker), nameof(DrawCommandRadius)), HarmonyTranspiler]
