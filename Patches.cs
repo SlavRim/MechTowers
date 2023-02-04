@@ -26,7 +26,7 @@ public static partial class Patches
     public static IEnumerable<CodeInstruction> DrawCommandRadius(IEnumerable<CodeInstruction> instructions)
     {
         var list = instructions.ToList();
-        var drawRing = typeof(GenDraw).GetMethods().Where(x => x.Name == nameof(GenDraw.DrawRadiusRing)).MaxBy(x => x.GetParametersCount());
+        var drawRing = typeof(GenDraw).GetMethods().Where(x => x.Name == nameof(GenDraw.DrawRadiusRing)).MaxBy(x => x.GetParameters().Count());
         var loadField = CodeInstruction.LoadField(typeof(Pawn_MechanitorTracker), nameof(Pawn_MechanitorTracker.pawn));
         var field = loadField.operand as FieldInfo;
         var idx = list.FindLastIndex(x => x.LoadsField(field)) - 1;
