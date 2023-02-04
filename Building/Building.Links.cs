@@ -12,19 +12,28 @@ partial class Building
     {
         if (!Active) return false;
         if (!IsLinkedOrAble(mech)) return false;
+
         return IsInside(localTarget);
     }
+
     public bool IsLinked(Pawn pawn) => LinkedPawns.Contains(pawn);
 
     public bool IsLinkedOrAble(Pawn pawn)
     {
-        if (!IsLinkable(pawn)) 
+        if (!IsLinkable(pawn)) // disallow if not linkable
             return false;
-        return IsLinked(pawn) || IsAbleToLink();
+        return // allow if building able to link 1 or is already linked  
+            IsAbleToLink() ||
+            IsLinked(pawn);
     }
-    public bool IsLinkedOrAble(ICollection<Pawn> pawns) =>
-        IsAbleToLink(pawns.Count) &&
-        pawns.All(IsLinkedOrAble);
+    public bool IsLinkedOrAble(ICollection<Pawn> pawns)
+    {
+        if (pawns.All(IsLinked)) return true; // allow if all pawns is linked
+
+        return // allow if building able to link N mechs and all is linkable
+            IsAbleToLink(pawns.Count) &&
+            pawns.All(IsLinkable);
+    }
 
     public bool IsLinkable(Pawn pawn)
     {
