@@ -35,13 +35,14 @@ public static partial class Patches
 
         var getPawnField = CodeInstruction.LoadField(typeof(Pawn_MechanitorTracker), nameof(Pawn_MechanitorTracker.pawn));
 
-        var idx = list.FindLastIndex(x => x.operand is MethodInfo method && method.DeclaringType == typeof(GenDraw)); // last line where draw is called
+        var idx = list.FindLastIndex(x => x.operand is MethodInfo method && method.DeclaringType == typeof(GenDraw))+1; // last line where draw is called
 
-        void Add(CodeInstruction instruction) => list.Insert(idx++, instruction);
-
-        Add(new(OpCodes.Ldarg_0));
-        Add(getPawnField);
-        Add(CodeInstruction.Call(() => Extensions.DrawCommandRadius(null as Pawn)));
+        list.InsertRange(idx, new List<CodeInstruction>
+        {
+            new(OpCodes.Ldarg_0),
+            getPawnField,
+            CodeInstruction.Call(() => Extensions.DrawCommandRadius(null as Pawn))
+        });
 
         return list;
     }
