@@ -24,26 +24,14 @@ public static partial class Patches
     }
 
     [HarmonyPatch(typeof(Pawn_MechanitorTracker), nameof(DrawCommandRadius)), HarmonyTranspiler]
-    public static IEnumerable<CodeInstruction> DrawCommandRadius(IEnumerable<CodeInstruction> instructions)
+    public static bool DrawCommandRadius(Pawn_MechanitorTracker __instance)
     {
-        var list = instructions.ToList();
-        var drawRing = 
-            typeof(GenDraw)
-            .GetMethods()
-            .Where(x => x.Name == nameof(GenDraw.DrawRadiusRing))
-            .MaxBy(x => x.GetParameters().Count());
+        var mechanitor = __instance;
+        var pawn = __instance.pawn;
 
-        var getPawnField = CodeInstruction.LoadField(typeof(Pawn_MechanitorTracker), nameof(Pawn_MechanitorTracker.pawn));
+        if(pawn.Spawned && mechanitor.AnySelectedDraftedMechs)
+            Extensions.DrawCommandRadius(pawn);
 
-        var idx = list.FindLastIndex(x => x.operand is MethodInfo method && method.DeclaringType == typeof(GenDraw))+1; // last line where draw is called
-
-        list.InsertRange(idx, new List<CodeInstruction>
-        {
-            new(OpCodes.Ldarg_0),
-            getPawnField,
-            CodeInstruction.Call(() => Extensions.DrawCommandRadius(null as Pawn))
-        });
-
-        return list;
+        return false;
     }
 }
