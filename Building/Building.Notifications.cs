@@ -2,6 +2,12 @@
 
 partial class Building
 {
+    /// <summary>
+    /// Notifies owner(mechanitor) and add/remove building to/from bound cache.
+    /// </summary>
+    /// <param name="owner"></param>
+    /// <param name="remove"></param>
+    /// <returns></returns>
     public virtual bool NotifyOwner(Pawn owner = null, bool remove = false)
     {
         // if null try use Owner
