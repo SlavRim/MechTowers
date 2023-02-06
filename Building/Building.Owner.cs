@@ -6,7 +6,7 @@ partial class Building
 
     public Pawn Owner
     {
-        get => Ownable?.Owner;
-        set => Ownable?.TrySetOwner(value);
+        get => Ownable.Owner;
+        set => Ownable.TrySetOwner(value);
     }
 }
