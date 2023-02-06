@@ -2,7 +2,7 @@
 
 partial class MechOrder
 {
-    public enum CommandResult
+    public enum CommandResult : sbyte
     {
         Disallowed = -100,
         NotAllMechsAllowed,
