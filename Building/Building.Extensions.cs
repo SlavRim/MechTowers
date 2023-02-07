@@ -20,6 +20,10 @@ public static partial class Building_Extensions
             predicate.TryInvoke(x)
         );
 
+    /// <summary>
+    /// Gets cache of buildings bound to the <paramref name="pawn"/>.
+    /// </summary>
+    /// <param name="pawn"></param>
     public static List<Building> GetBoundBuildings(this Pawn pawn)
     {
         if (pawn is not { MapHeld: not null }) return new();

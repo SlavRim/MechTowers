@@ -6,7 +6,12 @@ partial class Building
     public IReadOnlyCollection<Pawn> LinkedPawns => linkedPawns.Where(IsLinkedInternal).ToList();
 
     public bool IsReachedMaxLinks => !IsAbleToLink();
-    public bool IsAbleToLink(int additionalLinks = 1) => LinkedPawns.Count + additionalLinks <= Def.MaxLinkableMechs;
+
+    /// <summary>
+    /// Basically, returns true if <paramref name="additionalLinks"/> is within limit.
+    /// </summary>
+    /// <param name="additionalLinks"></param>
+    /// <returns>linked pawns count + <paramref name="additionalLinks"/> &lt;= limit of linkable mechs</returns>
 
     internal bool CanCommandTo(Pawn mech, LocalTargetInfo localTarget)
     {
@@ -35,6 +40,9 @@ partial class Building
             pawns.All(IsLinkable);
     }
 
+    /// <summary>
+    /// Determines if pawn is able to be linked.
+    /// </summary>
     public bool IsLinkable(Pawn pawn)
     {
         if (pawn?.GetOverseer() is not { } overseer)
@@ -53,6 +61,7 @@ partial class Building
         linkedPawns.Remove(pawn);
         pawn.health.RemoveBoosts(this);
     }
+
     protected bool TryAddLinked(Pawn pawn)
     {
         if (!IsLinkedInternal(pawn)) return false;

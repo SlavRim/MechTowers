@@ -3,7 +3,7 @@
 partial class Building
 {
     /// <summary>
-    /// Notifies owner(mechanitor) and add/remove building to/from bound cache.
+    /// Notifies owner(mechanitor) and adds/removes building to/from bound cache.
     /// </summary>
     /// <param name="owner"></param>
     /// <param name="remove"></param>
