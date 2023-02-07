@@ -12,6 +12,7 @@ partial class Building
     /// </summary>
     /// <param name="additionalLinks"></param>
     /// <returns>linked pawns count + <paramref name="additionalLinks"/> &lt;= limit of linkable mechs</returns>
+    public virtual bool IsAbleToLink(int additionalLinks = 1) => LinkedPawns.Count + additionalLinks <= Def.MaxLinkableMechs;
 
     internal bool CanCommandTo(Pawn mech, LocalTargetInfo localTarget)
     {
