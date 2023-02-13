@@ -12,7 +12,7 @@ public static partial class Extensions
 
     public static void DrawCommandRadius(Pawn pawn)
     {
-        var cells = GenRadial.RadialCellsAround(pawn.Position, Pawn_MechanitorTracker.MechCommandRange, false).ToList();
+        var cells = GenRadial.RadialCellsAround(pawn.Position, Pawn_MechanitorTracker.MechCommandRange, false).ToHashSet();
 
         var selectedDraftedMechs = GetSelectedDraftedMechs(pawn).ToList();
 
@@ -20,7 +20,7 @@ public static partial class Extensions
             if(selectedDraftedMechs.Any(building.IsLinkedOrAble))
                 cells.AddRange(building.Territory.Cells);
 
-        DrawCommandRadius(cells);
+        DrawCommandRadius(cells.ToList());
     }
     public static void DrawCommandRadius(List<IntVec3> cells) => GenDraw.DrawFieldEdges(cells ?? new(), Color.white);
 
