@@ -1,0 +1,3 @@
+[submodule "RimTerritory"]
+	path = RimTerritory
+	url = https://github.com/SlavRim/RimTerritory.git
