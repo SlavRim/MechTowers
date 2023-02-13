@@ -23,14 +23,16 @@ public static partial class Patches
             __result = order.AllowedFor(pawn).Handle();
     }
 
-    [HarmonyPatch(typeof(Pawn_MechanitorTracker), nameof(DrawCommandRadius)), HarmonyTranspiler]
+    [HarmonyPatch(typeof(Pawn_MechanitorTracker), nameof(DrawCommandRadius)), HarmonyPrefix]
     public static bool DrawCommandRadius(Pawn_MechanitorTracker __instance)
     {
         var mechanitor = __instance;
         var pawn = __instance.pawn;
 
-        if(pawn.Spawned && mechanitor.AnySelectedDraftedMechs)
-            Extensions.DrawCommandRadius(pawn);
+        if (!pawn.Spawned || !mechanitor.AnySelectedDraftedMechs)
+            return false;
+
+        Extensions.DrawCommandRadius(pawn);
 
         return false;
     }
