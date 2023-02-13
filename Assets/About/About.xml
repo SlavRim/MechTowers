@@ -17,5 +17,11 @@
 			<steamWorkshopUrl>steam://url/CommunityFilePage/2009463077</steamWorkshopUrl>
 			<downloadUrl>https://github.com/pardeike/HarmonyRimWorld/releases/latest</downloadUrl>
 		</li>
+		<li>
+			<packageId>Sl4vP0weR.RimTerritory</packageId>
+			<displayName>RimTerritory</displayName>
+			<steamWorkshopUrl>steam://url/CommunityFilePage/2932967004</steamWorkshopUrl>
+			<downloadUrl>https://github.com/SlavRim/RimTerritory</downloadUrl>
+		</li>
 	</modDependencies>
 </ModMetaData>
