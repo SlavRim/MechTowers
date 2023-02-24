@@ -27,14 +27,17 @@ public static partial class Building_Extensions
     public static List<Building> GetBoundBuildings(this Pawn pawn)
     {
         if (pawn is not { MapHeld: not null }) return new();
+
+        bool BoundPredicate(Building building) => 
+            building.Owner == pawn;
+
         if (!PawnBuildingsCache.Global.TryGetValue(pawn, out var cache))
         {
-            var buildings = pawn.MapHeld.GetBuildingsByPredicate(x =>
-                x.Owner == pawn
-            );
+            var buildings = pawn.MapHeld.GetBuildingsByPredicate(BoundPredicate);
             cache = new(pawn, buildings);
         }
-        cache.RemoveAll(x => x.Owner != pawn);
+        cache.RemoveAll(x => !BoundPredicate(x));
+
         return (PawnBuildingsCache.Global[pawn] = cache);
     }
     public static IEnumerable<Building> GetBoundBuildings(this Pawn pawn, Predicate<Building> predicate) =>
@@ -42,7 +45,6 @@ public static partial class Building_Extensions
         .Where(predicate.ToFunc());
     public static IEnumerable<Building> GetActiveBoundBuildings(this Pawn pawn, Predicate<Building> predicate = null) =>
         pawn.GetBoundBuildings(x =>
-            x.MapHeld == pawn.MapHeld &&
             x.Active &&
             predicate.TryInvoke(x)
         );
