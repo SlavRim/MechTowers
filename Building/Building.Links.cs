@@ -2,7 +2,7 @@
 
 partial class Building
 {
-    protected HashSet<Pawn> linkedPawns = new();
+    internal protected HashSet<Pawn> linkedPawns = new();
     public IReadOnlyCollection<Pawn> LinkedPawns => linkedPawns.Where(IsLinkedInternal).ToList();
 
     public bool IsReachedMaxLinks => !IsAbleToLink();

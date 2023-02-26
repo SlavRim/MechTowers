@@ -2,12 +2,12 @@
 <LanguageData>
 	<MechBuildingCategory.label>Устройство контроля меха</MechBuildingCategory.label>
 	
-	<MechBuildingRadius.label>радиус сигнала</MechBuildingRadius.label>
-	<MechBuildingRadius.description>Максимальное расстояние это устройство может передавать приказы Механойдам.</MechBuildingRadius.description>
+	<MechBuilding_Radius.label>радиус сигнала</MechBuilding_Radius.label>
+	<MechBuilding_Radius.description>Максимальное расстояние это устройство может передавать приказы Механойдам.</MechBuilding_Radius.description>
 	
-	<MechBuildingMaxLinks.label>максимум подключённых мехов</MechBuildingMaxLinks.label>
-	<MechBuildingMaxLinks.description>Лимит количетсва подключённых мехов.</MechBuildingMaxLinks.description>
+	<MechBuilding_MaxLinks.label>максимум подключённых мехов</MechBuilding_MaxLinks.label>
+	<MechBuilding_MaxLinks.description>Лимит количетсва подключённых мехов.</MechBuilding_MaxLinks.description>
 	
-	<MechBuildingBandwidth.label>пропускная способность</MechBuildingBandwidth.label>
-	<MechBuildingBandwidth.description>Количество получаемой пропускной способности мех-линка владельца-механитора.</MechBuildingBandwidth.description>
+	<MechBuilding_Bandwidth.label>пропускная способность</MechBuilding_Bandwidth.label>
+	<MechBuilding_Bandwidth.description>Количество получаемой пропускной способности мех-линка владельца-механитора.</MechBuilding_Bandwidth.description>
 </LanguageData>

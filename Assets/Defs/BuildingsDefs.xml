@@ -28,8 +28,7 @@
 		</statBases>
 		<comps>
 			<li Class="CompProperties_Flickable"/>
-			<li Class="CompProperties_AssignableToPawn">
-				<compClass>MechTowers.CompBuildingOwnable</compClass>
+			<li Class="MechTowers.CompProperties_Ownable">
 				<drawAssignmentOverlay>false</drawAssignmentOverlay>
 				<maxAssignedPawnsCount>1</maxAssignedPawnsCount>
 			</li>
@@ -59,8 +58,8 @@
 			<MaxHitPoints>150</MaxHitPoints>
 			<WorkToBuild>900</WorkToBuild>
 			<Mass>25</Mass>
-			<MechBuildingRadius>7</MechBuildingRadius>
-			<MechBuildingMaxLinks>3</MechBuildingMaxLinks>
+			<MechBuilding_Radius>7</MechBuilding_Radius>
+			<MechBuilding_MaxLinks>3</MechBuilding_MaxLinks>
 		</statBases>
 		<comps>
 			<li Class="CompProperties_Power">
@@ -95,8 +94,8 @@
 			<MaxHitPoints>400</MaxHitPoints>
 			<WorkToBuild>900</WorkToBuild>
 			<Mass>100</Mass>
-			<MechBuildingRadius>10</MechBuildingRadius>
-			<MechBuildingMaxLinks>7</MechBuildingMaxLinks>
+			<MechBuilding_Radius>10</MechBuilding_Radius>
+			<MechBuilding_MaxLinks>7</MechBuilding_MaxLinks>
 		</statBases>
 		<comps>
 			<li Class="CompProperties_Power">
@@ -132,9 +131,9 @@
 			<MaxHitPoints>450</MaxHitPoints>
 			<WorkToBuild>2700</WorkToBuild>
 			<Mass>150</Mass>
-			<MechBuildingRadius>10</MechBuildingRadius>
-			<MechBuildingMaxLinks>1000</MechBuildingMaxLinks>
-			<MechBuildingBandwidth>5</MechBuildingBandwidth>
+			<MechBuilding_Radius>10</MechBuilding_Radius>
+			<MechBuilding_MaxLinks>1000</MechBuilding_MaxLinks>
+			<MechBuilding_Bandwidth>5</MechBuilding_Bandwidth>
 		</statBases>
 		<comps>
 			<li Class="CompProperties_Power">
@@ -172,16 +171,17 @@
 			<MaxHitPoints>450</MaxHitPoints>
 			<WorkToBuild>1800</WorkToBuild>
 			<Mass>50</Mass>
-			<MechBuildingRadius>3</MechBuildingRadius>
-			<MechBuildingMaxLinks>2</MechBuildingMaxLinks>
+			<MechBuilding_Radius>3</MechBuilding_Radius>
+			<MechBuilding_MaxLinks>2</MechBuilding_MaxLinks>
 		</statBases>
 
-		<Boost>
-			<MoveSpeedModifier>1.20</MoveSpeedModifier>
-			<WorkSpeedModifier>1.20</WorkSpeedModifier>
-		</Boost>
-
 		<comps>
+			<li Class="MechTowers.CompProperties_Boost">
+				<Modifiers>
+					<MoveSpeedModifier>1.20</MoveSpeedModifier>
+					<WorkSpeedModifier>1.20</WorkSpeedModifier>
+				</Modifiers>
+			</li>
 			<li Class="CompProperties_Power">
 				<compClass>CompPowerTrader</compClass>
 				<basePowerConsumption>200</basePowerConsumption>

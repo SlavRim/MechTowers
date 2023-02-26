@@ -2,7 +2,8 @@
 
 partial class Building
 {
-    public CompBuildingOwnable Ownable => GetComp<CompBuildingOwnable>();
+    private CompOwnable ownable;
+    public CompOwnable Ownable => ownable ??= GetComp<CompOwnable>();
 
     public Pawn Owner
     {

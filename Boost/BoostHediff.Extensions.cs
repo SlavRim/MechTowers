@@ -21,18 +21,16 @@ public static class BoostHediff_Extensions
         foreach (var hediff in health.GetBoosts(tower))
             health.RemoveHediff(hediff);
     }
-    public static BoostHediff AddBoost(this Pawn_HealthTracker health, Building tower)
+    public static BoostHediff AddBoost(this Pawn_HealthTracker health, BoostModifiers boostModifiers, Building tower)
     {
-        var boostMods = tower.Def.Boost;
-        if (!boostMods.HasValue) return null;
-        var boost = health.AddBoost(boostMods.value);
+        var boost = health.AddBoost(boostModifiers);
         boost.Tower = tower;
         return boost;
     }
     public static BoostHediff AddBoost(this Pawn_HealthTracker health, BoostModifiers boostModifiers)
     {
         var part = health?.pawn.RaceProps.body.corePart;
-        var hediff = health?.AddHediff(Defs.MechTowerBoost, part, new(), new());
+        var hediff = health?.AddHediff(Defs.MechTowerBoost, part);
         if (hediff is not BoostHediff boost) return null;
         boost.Modifiers = boostModifiers;
         return boost;

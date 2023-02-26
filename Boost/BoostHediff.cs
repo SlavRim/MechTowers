@@ -2,16 +2,23 @@
 
 public class BoostHediff : HediffWithComps
 {
-    BoostModifiers modifiers;
+    private BoostModifiers modifiers;
     public BoostModifiers Modifiers 
     { 
         get => modifiers;
         set
         {
             modifiers = value;
-            stage = new()
-            {
-                statFactors = new() 
+            UpdateStage();
+        }
+    }
+    public Building Tower { get; internal set; }
+    private HediffStage stage = new();
+    private void UpdateStage()
+    {
+        stage = new()
+        {
+            statFactors = new()
                 {
                     new()
                     {
@@ -24,10 +31,14 @@ public class BoostHediff : HediffWithComps
                         value = modifiers.WorkSpeedModifier
                     }
                 }
-            };
-        }
+        };
     }
-    public Building Tower;
-    private HediffStage stage = new();
     public override HediffStage CurStage => stage;
+
+    public override void ExposeData()
+    {
+        base.ExposeData();
+        Scribe_Deep.Look(ref modifiers, nameof(modifiers));
+        UpdateStage();
+    }
 }

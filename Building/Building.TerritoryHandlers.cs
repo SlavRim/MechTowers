@@ -15,9 +15,6 @@ partial class Building
 
     protected void PawnStay(Pawn pawn)
     {
-        if (!TryAddLinked(pawn)) return;
-        var boosts = pawn.health.GetBoosts(this);
-        if (boosts.Count <= 0)
-            pawn.health.AddBoost(this);
+        TryAddLinked(pawn);
     }
 }

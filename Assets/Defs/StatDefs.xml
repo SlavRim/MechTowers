@@ -18,14 +18,14 @@
 	</StatDef>
 	
 	<StatDef ParentName="MechBuildingStat">
-		<defName>MechBuildingRadius</defName>
+		<defName>MechBuilding_Radius</defName>
 		<label>signal radius</label>
 		<description>The maximum distance this tower can transmit orders to Mechanoids.</description>
 		<defaultBaseValue>0</defaultBaseValue>
 		<minValue>0</minValue>
 	</StatDef>
 	<StatDef ParentName="MechBuildingStat">
-		<defName>MechBuildingMaxLinks</defName>
+		<defName>MechBuilding_MaxLinks</defName>
 		<label>maximum linked mechs</label>
 		<description>The limit of mechanoids that can receive orders from this tower.</description>
 		<defaultBaseValue>0</defaultBaseValue>
@@ -33,7 +33,7 @@
 		<maxValue>1000</maxValue>
 	</StatDef>
 	<StatDef ParentName="MechBuildingStat">
-		<defName>MechBuildingBandwidth</defName>
+		<defName>MechBuilding_Bandwidth</defName>
 		<label>bandwidth gain</label>
 		<description>The amount of bandwidth this tower gives to the bound mechanitor.</description>
 		<defaultBaseValue>0</defaultBaseValue>

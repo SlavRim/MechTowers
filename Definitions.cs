@@ -14,8 +14,8 @@ public static partial class Definitions
         MechOverdriveBeacon;
     public static StatCategoryDef 
         MechBuildingCategory;
-    public static StatDef 
-        MechBuildingMaxLinks,
-        MechBuildingRadius,
-        MechBuildingBandwidth;
+    public static StatDef
+        MechBuilding_MaxLinks,
+        MechBuilding_Radius,
+        MechBuilding_Bandwidth;
 }

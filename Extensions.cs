@@ -5,7 +5,16 @@ namespace MechTowers;
 public static partial class Extensions
 {
     public const string LogPrefix = $"[{nameof(MechTowers)}] ";
-    public static void DebugMessage(object text, Action<string> logAction = null) => (logAction ??= Log.Message).Invoke(LogPrefix + text);
+    public static void DebugMessage(object message, Action<string> logAction = null, Color? color = null)
+    {
+        logAction ??= Log.Message;
+        
+        var text = LogPrefix + message;
+        if (color.HasValue)
+            text = $"<color=#{ColorUtility.ToHtmlStringRGBA(color.Value)}>{text}</color>";
+
+        logAction.Invoke(text);
+    }
 
     public static Func<T, bool> ToFunc<T>(this Predicate<T> predicate) => new(predicate);
     public static bool TryInvoke<T>(this Predicate<T> predicate, T obj) => predicate?.Invoke(obj) ?? true;

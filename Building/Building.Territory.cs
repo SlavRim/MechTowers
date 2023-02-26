@@ -8,7 +8,7 @@ partial class Building
         protected set;
     }
     protected virtual Territory TerritoryFactory(Building building) => new Territory.Radial(building, building.Radius);
-    public Territory.Locator<Pawn>? PawnLocator;
+    public Territory.Locator<Pawn> PawnLocator;
 
     protected virtual void InitializeTerritory()
     {

@@ -20,6 +20,8 @@ public static partial class Building_Extensions
             predicate.TryInvoke(x)
         );
 
+    public static Building GetBuilding(this ThingComp comp) => comp.parent as Building;
+
     /// <summary>
     /// Gets cache of buildings bound to the <paramref name="pawn"/>.
     /// </summary>

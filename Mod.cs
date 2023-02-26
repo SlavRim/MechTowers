@@ -12,10 +12,21 @@ public sealed class Mod : Verse.Mod
     }
     public void OnStartup()
     {
+        DebugMessage("Loading.", color: Color.magenta);
         try
         {
+#if !DEBUG
+            DebugMessage("Verifiying dependencies.");
+
+            foreach (var dependency in Content.ModMetaData.Dependencies)
+                if (!ModsConfig.IsActive(dependency.packageId))
+                    throw new Exception("Not found needed dependency.");
+#endif
+
             DebugMessage("Patching.");
+
             Harmony.PatchAll();
+
             DebugMessage("Loaded successfully.");
         }
         catch (Exception ex)
