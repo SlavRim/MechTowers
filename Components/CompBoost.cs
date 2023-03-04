@@ -15,6 +15,8 @@ public class CompBoost : ThingComp
     {
         if (!Building.Active) return;
 
+        if (!Building.IsLinked(pawn)) return;
+
         ApplyBoost(pawn);
     }
 
