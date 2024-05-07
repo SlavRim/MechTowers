@@ -25,7 +25,7 @@
 	<PropertyGroup>
 		<OS64>$([System.Environment]::Is64BitOperatingSystem)</OS64>
 	</PropertyGroup>
-	
+
 	<PropertyGroup>
 		<OutputType>Library</OutputType>
 		<EnablePreviewFeatures>true</EnablePreviewFeatures>
@@ -38,18 +38,18 @@
 		<RunPostBuildEvent>Always</RunPostBuildEvent>
 		<RunPreBuildEvent>Always</RunPreBuildEvent>
 	</PropertyGroup>
-	
+
 	<!-- Define if undefined -->
 	<PropertyGroup Condition="'$(Configurations)' == ''">
 		<Configurations>1.3_DEBUG;1.3;1.4_DEBUG;1.4;1.5_DEBUG;1.5</Configurations>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<ConfigurationsList Include="$(Configurations.Split(';'))" />
+		<ConfigurationsList Include="$(Configurations.Split(';'))"/>
 	</ItemGroup>
 
 	<ItemGroup>
-		<GameVersions Include="@(ConfigurationsList)" Exclude="@(ConfigurationsList->Contains('_DEBUG')" />
+		<GameVersions Include="@(ConfigurationsList)" Exclude="@(ConfigurationsList->Contains('_DEBUG')"/>
 	</ItemGroup>
 
 	<PropertyGroup Condition="'$(AllowLocalAssemblies)' == ''">
@@ -134,7 +134,7 @@
 			</Choose>
 		</When>
 	</Choose>
-	
+
 
 	<!-- Setup mod properties -->
 
@@ -143,13 +143,13 @@
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(AssetsDir)' == ''">
-		<AssetsDir>$(SolutionDir)Assets\</AssetsDir>
+		<AssetsDir>$(ProjectDir)..\Assets\</AssetsDir>
 	</PropertyGroup>
 
 	<PropertyGroup>
 		<ModOutputPath>$(AssetsDir)</ModOutputPath>
 		<!-- Assets -->
-		
+
 		<ModOutputVersionPath>$(ModOutputPath)$(GameVersion)\</ModOutputVersionPath>
 		<!-- Assets\(1.3..1.4)\ -->
 
@@ -179,34 +179,34 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<Publicize Include="$(Publicize);Assembly-CSharp" />
+		<Publicize Include="$(Publicize);Assembly-CSharp"/>
 	</ItemGroup>
 
 	<!-- Add Krafs.Publicizer. Makes every member of choosen assemblies to be public, so you could use every member in your projects.  -->
 	<ItemGroup>
-		<PackageReference Include="Krafs.Publicizer" Version="2.2.0" />
+		<PackageReference Include="Krafs.Publicizer" Version="2.2.0"/>
 	</ItemGroup>
 
 	<!-- Add PolySharp. Allows you to use almost every new CSharp feature in your projects. -->
 	<ItemGroup>
-		<PackageReference Include="PolySharp" Version="*" />
+		<PackageReference Include="PolySharp" Version="*"/>
 	</ItemGroup>
 
 	<!-- Add net references -->
 	<ItemGroup Condition="$(TargetFramework.ToLower.StartsWith('net4'))">
-		<PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies.$(TargetFramework)" Version="*" ExcludeAssets="runtime" />
+		<PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies.$(TargetFramework)" Version="*" ExcludeAssets="runtime"/>
 	</ItemGroup>
 
 	<!-- Add game assemblies as references -->
 	<Choose>
 		<When Condition="$(AllowLocalAssemblies) and Exists('$(GameAssembliesDir)')">
 			<ItemGroup>
-				<Reference Include="$(GameAssembliesDir)*.dll" Private="false" />
+				<Reference Include="$(GameAssembliesDir)*.dll" Private="false"/>
 			</ItemGroup>
 		</When>
 		<Otherwise>
 			<ItemGroup>
-				<PackageReference Include="Krafs.Rimworld.Ref" Version="$(GameVersion).*-*" ExcludeAssets="runtime"  />
+				<PackageReference Include="Krafs.Rimworld.Ref" Version="$(GameVersion).*-*" ExcludeAssets="runtime"/>
 			</ItemGroup>
 		</Otherwise>
 	</Choose>
@@ -219,54 +219,54 @@
 
 	<!-- Cleaning -->
 	<Target Name="cleanup" AfterTargets="BeforeClean">
-		<RemoveDir Directories="$(GameModPath)" ContinueOnError="true" />
+		<RemoveDir Directories="$(GameModPath)" ContinueOnError="true"/>
 	</Target>
 
 	<!-- https://stackoverflow.com/a/5514808 - Batch Build/Restore -->
 
 	<Target Name="BatchBuild">
-		<Exec Command="dotnet build &quot;$(SolutionPath)&quot; -c %(GameVersions.Identity) -p:BatchBuild=true -restore -v n" />
+		<Exec Command="dotnet build &quot;$(SolutionPath)&quot; -c %(GameVersions.Identity) -p:BatchBuild=true -restore -v n"/>
 	</Target>
 
 	<!-- Pre build, message about it -->
 	<Target Name="prebuild" AfterTargets="PreBuildEvent">
-		<Message Text="Building $(ModName) with configuration $(Configuration) >" Importance="high" />
-		<Message Text="Assemblies at: $(ModOutputAssembliesPath)" Importance="high" />
-		<Message Text="Game mod at: $(GameModPath)" Importance="high" />
+		<Message Text="Building $(ModName) with configuration $(Configuration) >" Importance="high"/>
+		<Message Text="Assemblies at: $(ModOutputAssembliesPath)" Importance="high"/>
+		<Message Text="Game mod at: $(GameModPath)" Importance="high"/>
 	</Target>
 
 	<Target Name="postbuild" AfterTargets="PostBuildEvent">
 
 		<Message Importance="high" Text="Unable to copy build to the game mods, please change path to the game(&lt;GameDir&gt;$(GameDir)&lt;/GameDir&gt;)."
-				 Condition="!Exists('$(GameModsPath)')" IsCritical="true" />
+				 Condition="!Exists('$(GameModsPath)')" IsCritical="true"/>
 
-		<MakeDir Directories="$(ModOutputVersionPath)" ContinueOnError="true" />
+		<MakeDir Directories="$(ModOutputVersionPath)" ContinueOnError="true"/>
 
-		<RemoveDir Directories="$(ModOutputAssembliesPath)" ContinueOnError="true" />
+		<RemoveDir Directories="$(ModOutputAssembliesPath)" ContinueOnError="true"/>
 		<Exec Command="mklink /D &quot;$(ModOutputAssembliesPath)&quot; &quot;$(ProjectDir)$(OutputPath)&quot;"
-			  IgnoreExitCode="true" />
+			  IgnoreExitCode="true"/>
 
-		<RemoveDir Directories="$(GameModPath)" ContinueOnError="true" />
+		<RemoveDir Directories="$(GameModPath)" ContinueOnError="true"/>
 		<Exec Command="mklink /D &quot;$(GameModPath)&quot; &quot;$(ModOutputPath)&quot;"
-			  IgnoreExitCode="true" />
+			  IgnoreExitCode="true"/>
 
 	</Target>
 
 	<!-- Global usings -->
 	<ItemGroup>
-		<Using Include="System" />
-		<Using Include="System.Reflection" />
-		<Using Include="System.Collections" />
-		<Using Include="System.Collections.Generic" />
-		<Using Include="System.Linq" />
-		<Using Include="System.Runtime.CompilerServices" />
-		<Using Include="UnityEngine" />
-		<Using Include="RimWorld" />
-		<Using Include="Verse" />
-		<Using Include="Verse.AI" />
+		<Using Include="System"/>
+		<Using Include="System.Reflection"/>
+		<Using Include="System.Collections"/>
+		<Using Include="System.Collections.Generic"/>
+		<Using Include="System.Linq"/>
+		<Using Include="System.Runtime.CompilerServices"/>
+		<Using Include="UnityEngine"/>
+		<Using Include="RimWorld"/>
+		<Using Include="Verse"/>
+		<Using Include="Verse.AI"/>
 		<Using Static="true"
 			   Include="Verse.TranslatorFormattedStringExtensions"/>
-		<Using Alias="RimRandom" Include="Verse.Rand" />
+		<Using Alias="RimRandom" Include="Verse.Rand"/>
 	</ItemGroup>
 
 </Project>
