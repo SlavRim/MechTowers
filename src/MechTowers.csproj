@@ -1,16 +1,19 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<Configurations>1.4;1.4_DEBUG</Configurations>
-		<ModSharedProps>$(SolutionDir)Shared.mod.props.csproj</ModSharedProps>
+		<Configurations>1.4_DEBUG;1.4;1.5_DEBUG;1.5</Configurations>
 	</PropertyGroup>
-
+	
+	<PropertyGroup>
+		<ModSharedProps>$(ProjectDir)Shared.mod.props.csproj</ModSharedProps>
+	</PropertyGroup>
+	
+	<Import Project="$(ModSharedProps)" />
+	
 	<ItemGroup>
 	  <Publicize Include="mscorlib" />
 	</ItemGroup>
 	
-	<Import Project="$(ModSharedProps)" />
-
 	<ItemGroup>
 	  <Compile Remove="RimTerritory\**" />
 	  <EmbeddedResource Remove="RimTerritory\**" />
@@ -20,12 +23,12 @@
 	<Choose>
 		<When Condition="'$(Debug)' == 'true'">
 			<ItemGroup>
-				<ProjectReference Include="$(ProjectDir)RimTerritory\RimTerritory.csproj" />
+				<ProjectReference Include="$(ProjectDir)RimTerritory\src\RimTerritory.csproj" />
 			</ItemGroup>
 		</When>
 		<Otherwise>
 			<ItemGroup>
-				<ProjectReference Include="$(ProjectDir)RimTerritory\RimTerritory.csproj" Private="false" />
+				<ProjectReference Include="$(ProjectDir)RimTerritory\src\RimTerritory.csproj" Private="false" />
 			</ItemGroup>
 		</Otherwise>
 	</Choose>
