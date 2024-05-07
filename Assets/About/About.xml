@@ -8,6 +8,7 @@
 	<packageId>Sl4vP0weR.MechTowers</packageId>
 	<supportedVersions>
 		<li>1.4</li>
+		<li>1.5</li>
 	</supportedVersions>
 	<description>Build Mechanitor Towers that can replicate the order signals to mechs.</description>
 	<modDependencies>
